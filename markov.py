@@ -1,5 +1,6 @@
 #####
 # Markov chain
+# https://bskyvision.com/573
 #####
 
 # SIMPLE EXAMPLE (2by2)
@@ -38,4 +39,4 @@ for i in range(2,101) :
 
 plt.plot(np.arange(99), result_a, result_b)
 
-# https://bskyvision.com/573
+
