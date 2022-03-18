@@ -27,5 +27,15 @@ def markov_pred(mat,iter,initial):
 result = markov_pred(mat,iter,initial)
 print(result)
 
-# 추가할 요소 : iteration 횟수 1->100 로 갈 때 결과물 그래프로
+# 99번 iteration에 대한 visualization
+import matplotlib.pyplot as plt
+
+result_a = np.zeros(99)
+result_b = np.zeros(99)
+for i in range(2,101) :
+  # print(markov_pred(mat,initial,iteration=i))
+  result_a[i-2], result_b[i-2] = markov_pred(mat,initial,i)
+
+plt.plot(np.arange(99), result_a, result_b)
+
 # https://bskyvision.com/573
