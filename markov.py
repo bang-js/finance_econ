@@ -3,7 +3,9 @@
 # https://bskyvision.com/573
 #####
 
+###
 # SIMPLE EXAMPLE (2by2)
+###
 import numpy as np
 
 aa = float(input("P[A(t)->A(t+1)] :"))
@@ -39,4 +41,37 @@ for i in range(2,101) :
 
 plt.plot(np.arange(99), result_a, result_b)
 
+###
+# general case (n by n) 
+###
+import numpy as np
+import sys
+
+n = int(input("matrix dimension :")) # 행렬 차원 설정
+mat = []
+for i in range(n) :
+    my_list = list(map(float, input("{}번 입력:".format(n-1)).split())) # 반환값을 &nbsp; 기준으로 각각을 쪼개서 list로 저장, 헷갈리지 않도록 n-1번 입력하라고 명시
+    if 1-sum(my_list) < 0 : # n-1개의 합이 1을 넘어버리면 오류로 간주하고 실행중단
+        print("error")
+        sys.exit(0) # 실행중단
+    my_list.append(1-sum(my_list)) # 마지막 확률값은 1-sum(.)이므로 자동으로 계산한 뒤 마지막 원소로 추가
+    mat.append(my_list) # list를 행렬(리스트)의 각 원소로 저장
+mat = np.array(mat) 
+print(mat)
+
+# 반복횟수
+iter = int(input("iteration :"))
+# n개의 초기값 입력
+initial = np.array(
+    list(map(float, input("{}개의 초기값 :".format(n)).split()))
+)
+
+def markov_pred(mat,iter,initial):
+    mat_temp = mat
+    for i in range(iter-1):
+        mat_temp = mat_temp.dot(mat)
+    return initial.dot(mat_temp)
+
+result = markov_pred(mat,iter,initial)
+print(result)
 
