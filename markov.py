@@ -75,3 +75,35 @@ def markov_pred(mat,iter,initial):
 result = markov_pred(mat,iter,initial)
 print(result)
 
+##
+# general case vasualization
+##
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+max_iter = int(input("iteration 수:"))
+result = np.empty((0,n),int)
+for i in range(2,max_iter) :
+  temp = np.array([markov_pred(mat,initial,i)])
+  result = np.append(result, temp, axis=0)
+
+# df을 사용하여 중첩하여 그리기
+df = pd.DataFrame(result)
+print(df)
+
+plt.figure(figsize=(10,5))
+for a in range(n):
+    plt.plot(np.arange(max_iter-2), df[a], "-", label=str(a))
+plt.show()
+
+# subplot을 이용하여 여러 그래프로 그리기
+result = result.T
+rows = int(np.ceil(n/5)) # ceil : 올림
+cols = n if rows < 2 else 5  # 행이 1개면 열의 개수는 샘플의 개수, 그렇지 않으면 10개
+fig, axs = plt.subplots(rows, cols, figsize=(15, 3), squeeze=False)
+for i in range(rows) :
+  for j in range(cols) :
+    if i*5+j < n :
+      axs[i,j].plot(result[i*5+j])
+plt.show()
