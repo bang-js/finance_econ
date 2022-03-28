@@ -13,3 +13,7 @@ markov.py \
 &nbsp;&nbsp;2 by 2 case \
 &nbsp;&nbsp;n by n case \
 &nbsp;&nbsp;visualization : 한 평면에 여러 그래프 중첩 vs 여러 그래프를 개별적으로
+
+## summary statistics
+summary_stat.py \
+&nbsp;&nbsp; mean, var(std), skewness, kurtosis
