@@ -50,4 +50,8 @@ print(skew_df_2)
 kurt_df = df['ror_dv'].pow(4).mean() / pow(var_df, 2)
 print("kurtosis: ", kurt_df)
 
-# 정규성 검정
+
+
+######
+# 향후 mgf를 taylor exp.로 근사시켜 식을 구성한 뒤 구한 요약통계량으로 norm, chi, beta 등과 비교하여 RAE, RMSE(%) 계산하기
+
