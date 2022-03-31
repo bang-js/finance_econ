@@ -17,3 +17,7 @@ markov.py \
 ## summary statistics
 summary_stat.py \
 &nbsp;&nbsp; mean, var(std), skewness, kurtosis
+
+## distribution
+distribution.py \
+&nbsp;&nbsp; Poisson dist
