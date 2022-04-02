@@ -51,7 +51,34 @@ kurt_df = df['ror_dv'].pow(4).mean() / pow(var_df, 2)
 print("kurtosis: ", kurt_df)
 
 
+###
+# 상관계수 계산
+###
 
-######
-# 향후 mgf를 taylor exp.로 근사시켜 식을 구성한 뒤 구한 요약통계량으로 norm, chi, beta 등과 비교하여 RAE, RMSE(%) 계산하기
+# 난수로 두 series 만들기 
+lst1 = []
+lst2 = []
+for i in range(100) :
+    lst1.append(random.random())
+    lst2.append(random.random())
+series1 = pd.Series(lst1)
+series2 = pd.Series(lst2)
+
+# 평균 및 표준편차 계산
+mean_1 = series1.mean()
+mean_2 = series2.mean()
+
+series1_sq = series1.pow(2) 
+series2_sq = series2.pow(2) 
+std_1 = pow(series1_sq.mean() - pow(mean_1,2) ,0.5)
+std_2 = pow(series2_sq.mean() - pow(mean_2,2) ,0.5)
+print(mean_1, mean_2, std_1,std_2)
+
+# 공분산 및 상관계수 
+mul_series1_2 = (series1 - mean_1)*(series2 - mean_2)
+cov = mul_series1_2.mean()
+print("공분산: ",cov)
+corr_ef = cov/(std_1*std_2)
+print("상관계수: ", corr_ef)
+
 
