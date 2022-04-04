@@ -53,11 +53,9 @@ elif q_range == 'point' :
     print("prob:", b)
 elif q_range == 'under' :
     print("prob:", poisson_v2_under(v,t,z))
-elif q_range == 'less' :
-    pass
-elif q_range == 'over' :
-    pass
+elif q_range == 'less' : # P[Z <= z] = P[Z < z] + P[Z = z] => under + point
+    print("prob:", poisson_v2_under(v,t,z) + poisson_v2_point(v,t,z) )
+elif q_range == 'over' : # P[Z > z] = 1- P[Z < z] - P[Z = z] => 1 - under - point
+    print("prob:", 1 - poisson_v2_under(v,t,z) - poisson_v2_point(v,t,z) )
 else : 
     print("올바른 범위 작성 요망")
-
-### 향후 계획 : under, less까지
