@@ -17,6 +17,8 @@ markov.py \
 ## summary statistics
 summary_stat.py \
 &nbsp;&nbsp; mean, var(std), skewness, kurtosis
+&nbsp;&nbsp; covariance, correlation
+
 
 ## distribution
 distribution.py \
