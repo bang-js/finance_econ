@@ -16,10 +16,10 @@ markov.py \
 
 ## summary statistics
 summary_stat.py \
-&nbsp;&nbsp; mean, var(std), skewness, kurtosis
+&nbsp;&nbsp; mean, var(std), skewness, kurtosis \
 &nbsp;&nbsp; covariance, correlation
 
 
 ## distribution
 distribution.py \
-&nbsp;&nbsp; Poisson dist
+&nbsp;&nbsp; Poisson dist : cdf, pdf and vt 버전
