@@ -25,3 +25,8 @@ print(df['ror'].describe(percentiles=[0.01,0.1,0.5,0.9])) # percentile 조정
 # plt.ylabel('frequency')
 # print(plt.show())
 
+# 1% 충격 발생 시 5일, 10일, 20일, 45일, 60일, 90일, 120일, 180일 뒤 어떤 total change를 보였는지  
+# output : 1% 충격 발생 시점 - 5일, 10일, 20일, 45일, 60일, 90일, 120일, 180일별 total change
+# total change = (N일 뒤 가격)/(1% 충격을 받은 날의 종가) - 1
+
+# 1% 뒤의 약 반 년 간의 시계열 데이터들을 모아 특정 함수(A-exp(-at) 등)에 대해 regression해서 유의성 검토하기
