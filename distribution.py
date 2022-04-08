@@ -30,14 +30,15 @@ for i in range(10) :
 # 이상, 이하, 초과, 미만은 SIGMA의 시작/끝값을 적절히 조정해야함
 # t동안(에서) z번 발생할 확률 : P[Z(t) = z] = [(exp(-vt)*(vt)^(-z))/z!] 
 
+
 v = float(input("단위당 평균횟수(v):"))
 t = float(input("총 단위(t):"))
 z = int(input("시행횟수(z):"))
-q_range = input("z 기준 more/less/over/under/point 중 택일:")
+q_range = input("z 기준 more(초과)/less(미만)/notless(이상)/notmore(이하)/point 중 택일:")
 
-def poisson_v2_under(v1,t1,z1):
+def poisson_v2_under(v1,t1,z1): # under : 미만
     prob = 0
-    for i in range(z1) :
+    for i in range(z1) : # z1을 포함X
         prob += (math.exp(-v1*t1))*(pow(v1*t1,i))/(math.factorial(i))
     return prob
 
@@ -45,17 +46,17 @@ def poisson_v2_point(v2,t2,z2):
     prob = (math.exp(-v2*t2))*(pow(v2*t2,z2))/(math.factorial(z2))
     return prob
 
-if q_range == 'more' :
+if q_range == 'notless' :
     a = poisson_v2_under(v,t,z)
     print("prob:", 1-a)
 elif q_range == 'point' :
     b = poisson_v2_point(v,t,z)
     print("prob:", b)
-elif q_range == 'under' :
+elif q_range == 'less' :
     print("prob:", poisson_v2_under(v,t,z))
-elif q_range == 'less' : # P[Z <= z] = P[Z < z] + P[Z = z] => under + point
+elif q_range == 'notmore' : # P[Z <= z] = P[Z < z] + P[Z = z] => under + point
     print("prob:", poisson_v2_under(v,t,z) + poisson_v2_point(v,t,z) )
-elif q_range == 'over' : # P[Z > z] = 1- P[Z < z] - P[Z = z] => 1 - under - point
+elif q_range == 'more' : # P[Z > z] = 1- P[Z < z] - P[Z = z] => 1 - under - point
     print("prob:", 1 - poisson_v2_under(v,t,z) - poisson_v2_point(v,t,z) )
 else : 
     print("올바른 범위 작성 요망")
