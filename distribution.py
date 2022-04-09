@@ -1,6 +1,33 @@
 import math
 
 #####
+# Binomial dist
+#####
+
+n = int(input("n(총횟수)값:"))
+p = float(input("p(성공확률)값:"))
+
+def bin_pdf(n,p,x):
+    bin_pdf_value = (math.factorial(n)/(math.factorial(x)*math.factorial(n-x)))*pow(p,x)*pow(1-p,n-x)
+    return bin_pdf_value
+
+def bin_cdf(n,p,x):
+    bin_cdf_value = 0
+    for i in range(x+1) :
+        bin_cdf_value += (math.factorial(n)/(math.factorial(i)*math.factorial(n-i)))*pow(p,i)*pow(1-p,n-i)
+    return bin_cdf_value
+
+print("cdf")
+i=0
+while bin_cdf(n,p,i) <= 0.999 :
+    print("x={}".format(i), round(bin_cdf(n,p,i),8))
+    i += 1
+# cdf가 0.999를 넘지않는 최대 x를 i로 고정
+print("pdf")
+for j in range(i) :
+    print("x={}".format(j), round(bin_pdf(n,p,j),8))
+
+#####
 # POISSON DIST
 #####
 
