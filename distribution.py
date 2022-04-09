@@ -6,23 +6,25 @@ import math
 
 lambd = int(input("lambda값:"))
 
-def poisson_pdf(x):
+def poisson_pdf(lambd, x):
     poisson_pdf_value = math.exp((-1)*lambd) * pow(lambd,x) / math.factorial(x)
     return poisson_pdf_value
 
-def poisson_cdf(x):
+def poisson_cdf(lambd, x):
     poisson_cdf_value = 0
     for i in range(x+1) :
         poisson_cdf_value += math.exp((-1)*lambd) * pow(lambd,i) / math.factorial(i)
     return poisson_cdf_value
 
-for i in range(10) :
-    print("x={}".format(i), round(poisson_pdf(i),8))
-    
 print("cdf")
-for i in range(10) :
-    print("x={}".format(i), round(poisson_cdf(i),8))
-
+i=0
+while poisson_cdf(lambd,i) <= 0.999 :
+    print("x={}".format(i), round(poisson_cdf(lambd, i),8))
+    i += 1
+# cdf가 0.999를 넘지않는 최대 x를 i로 고정
+print("pdf")
+for j in range(i) :
+    print("x={}".format(j), round(poisson_pdf(lambd,j),8))
 
 # v(단위당 평균횟수), t(총 단위), z(시행횟수) 가 주어질 때 포아송 분포 계산
 # t동안(에서) z번 이상 발생할 확률 : P[Z(t) >= z] = SIGMA_(x=z)^(inf)[(exp(-vt)*(vt)^(-x))/x!] 
