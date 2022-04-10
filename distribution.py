@@ -28,6 +28,38 @@ for j in range(i) :
     print("x={}".format(j), round(bin_pdf(n,p,j),8))
 
 #####
+# hypergeometric dist : K, M, n
+#####
+
+print("hypergeometric dist")
+n = int(input("n(선택횟수)값:"))
+k = int(input("k(대상(불량) 수)값:"))
+m = int(input("m(전체표본 수)값:"))
+
+def combination(a,b):
+    return (math.factorial(a))/(math.factorial(b)*math.factorial(a-b))
+
+def hg_pdf(n,k,m,x):
+    hg_pdf_value = (combination(k,x)*combination(m-k,n-x))/combination(m,n)
+    return hg_pdf_value
+
+def hg_cdf(n,k,m,x):
+    hg_cdf_value = 0
+    for i in range(x+1) :
+        hg_cdf_value += (combination(k,i)*combination(m-k,n-i))/combination(m,n)
+    return hg_cdf_value
+
+print("cdf")
+i=0
+while hg_cdf(n,k,m,i) <= 0.999 :
+    print("x={}".format(i), round(hg_cdf(n,k,m,i),8))
+    i += 1
+# cdf가 0.999를 넘지않는 최대 x를 i로 고정
+print("pdf")
+for j in range(i) :
+    print("x={}".format(j), round(hg_pdf(n,k,m,j),8))
+
+#####
 # POISSON DIST
 #####
 
