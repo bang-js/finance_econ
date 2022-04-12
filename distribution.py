@@ -121,3 +121,32 @@ elif q_range == 'more' : # P[Z > z] = 1- P[Z < z] - P[Z = z] => 1 - under - poin
     print("prob:", 1 - poisson_v2_under(v,t,z) - poisson_v2_point(v,t,z) )
 else : 
     print("올바른 범위 작성 요망")
+
+#####
+# geometric dist
+#####
+
+print("geometric dist")
+
+p = float(input("p(성공확률)값:"))
+
+def geo_pdf(p,x):
+    geo_pdf_value = p*pow(1-p,x)
+    return geo_pdf_value
+
+def geo_cdf(p,x):
+    geo_cdf_value = 0
+    for i in range(x+1) :
+        geo_cdf_value += p*pow(1-p,i)
+    return geo_cdf_value
+
+print("cdf")
+i=0
+while geo_cdf(p,i) <= 0.999 :
+    print("x={}".format(i), round(geo_cdf(p,i),8))
+    i += 1
+# cdf가 0.999를 넘지않는 최대 x를 i로 고정
+print("pdf")
+for j in range(i) :
+    print("x={}".format(j), round(geo_pdf(p,j),8))
+
