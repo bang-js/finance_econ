@@ -150,3 +150,30 @@ print("pdf")
 for j in range(i) :
     print("x={}".format(j), round(geo_pdf(p,j),8))
 
+
+#####
+# negative binomial
+#####
+
+r = int(input("r(성공횟수)값:"))
+p = float(input("p(성공확률)값:"))
+
+def nb_pdf(r,p,x):
+    nb_pdf_value = combination(r+x-1,x)*pow(p,r)*pow(1-p,x)
+    return nb_pdf_value
+
+def nb_cdf(r,p,x):
+    nb_cdf_value = 0
+    for i in range(x+1) :
+        nb_cdf_value += combination(r+i-1,i)*pow(p,r)*pow(1-p,i)
+    return nb_cdf_value
+
+print("cdf")
+i=0
+while nb_cdf(r,p,i) <= 0.999 :
+    print("x={}".format(i), round(nb_cdf(r,p,i),8))
+    i += 1
+# cdf가 0.999를 넘지않는 최대 x를 i로 고정
+print("pdf")
+for j in range(i) :
+    print("x={}".format(j), round(nb_pdf(r,p,j),8))
