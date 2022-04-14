@@ -22,4 +22,9 @@ summary_stat.py \
 
 ## distribution
 distribution.py \
+&nbsp;&nbsp; binomial dist
+&nbsp;&nbsp; hypergeometric dist
 &nbsp;&nbsp; Poisson dist : cdf, pdf and vt 버전
+&nbsp;&nbsp; geometric dist
+&nbsp;&nbsp; negative binomial dist
+
