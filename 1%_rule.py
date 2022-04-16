@@ -25,8 +25,45 @@ print(df['ror'].describe(percentiles=[0.01,0.1,0.5,0.9])) # percentile 조정
 # plt.ylabel('frequency')
 # print(plt.show())
 
-# 1% 충격 발생 시 5일, 10일, 20일, 45일, 60일, 90일, 120일, 180일 뒤 어떤 total change를 보였는지  
-# output : 1% 충격 발생 시점 - 5일, 10일, 20일, 45일, 60일, 90일, 120일, 180일별 total change
-# total change = (N일 뒤 가격)/(1% 충격을 받은 날의 종가) - 1
+# 1% 충격 발생 시 5일, 10일, 20일, 30일, 45일, 60일, 90일, 120일, 180일 뒤 어떤 total change를 보였는지
+threshold = -0.1 ### -x% 기준 ###  
+
+shock_date = []
+shock_day_open = []
+shock_day_close = []
+shock_day_5 = []
+shock_day_10 = []
+shock_day_20 = []
+shock_day_30 = []
+shock_day_45 = []
+shock_day_60 = []
+shock_day_90 = []
+shock_day_120 = []
+day_no_list = [5,10,20,30,45,60,90,120]     # len = 8
+shock_day_list = [shock_day_5, shock_day_10, shock_day_20, shock_day_30, shock_day_45, shock_day_60, shock_day_90, shock_day_120]
+
+for idx in range(2,df.shape[0]):
+    if df.iloc[idx][8] <= threshold :                    # 8:ror
+        shock_date.append(df.iloc[idx][0])          # 0:date
+        shock_day_open.append(df.iloc[idx][1])      # 1:open
+        shock_day_close.append(df.iloc[idx][4])     # 4:close
+        for j in range(8) :                         # 8 : length
+            if idx+day_no_list[j] < df.shape[0]  :   # df 밖으로 나가는 경우 제외 (오류 방지)
+                add = (df.iloc[idx+day_no_list[j]][4]/df.iloc[idx][4])-1   # 종가 대비 변화율
+                shock_day_list[j].append(add)
+            else :
+                shock_day_list[j].append(math.nan)
+
+ROR = pd.DataFrame([ x for x in zip(
+    shock_date, shock_day_open, shock_day_close, shock_day_5, shock_day_10, shock_day_20, \
+        shock_day_30, shock_day_45, shock_day_60, shock_day_90, shock_day_120
+)])
+ROR.rename(columns={0:'shock_date', 1:'shock_day_open', 2:'shock_day_close', 3:'shock_day_5', 4:'shock_day_10', 5:'shock_day_20', \
+        6:'shock_day_30', 7:'shock_day_45', 8:'shock_day_60', 9:'shock_day_90', 10:'shock_day_120'}
+, inplace=True)
+
+filename = '{}_{}_1percent_rule.csv'.format(etf_ticker,threshold)
+file = open(filename, "w", encoding="utf-8-sig")  
+ROR.to_csv('C:/etf/'+filename, index=None)
 
 # 1% 뒤의 약 반 년 간의 시계열 데이터들을 모아 특정 함수(A-exp(-at) 등)에 대해 regression해서 유의성 검토하기
