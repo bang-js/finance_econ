@@ -66,4 +66,9 @@ filename = '{}_{}_1percent_rule.csv'.format(etf_ticker,threshold)
 file = open(filename, "w", encoding="utf-8-sig")  
 ROR.to_csv('C:/etf/'+filename, index=None)
 
+# 투자 전략 
+# 매수점 : (이전 매도 이후) MA60 < MA5 시
+# 매도점(손절이자 익절, unique) : 전날 VaR 발생 시
+# 재매수점(큰 폭으로 하락하지 않고 다시 올라온 경우) : 2주 뒤(10일)에도 종가가 MA60 위에 올라가있으면 매수 vs 매도가 < 현재가 면 매수
+
 # 1% 뒤의 약 반 년 간의 시계열 데이터들을 모아 특정 함수(A-exp(-at) 등)에 대해 regression해서 유의성 검토하기
