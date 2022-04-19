@@ -107,3 +107,6 @@ for i in range(rows) :
     if i*5+j < n :
       axs[i,j].plot(result[i*5+j])
 plt.show()
+
+# symmetric markov
+# rho = 2*pi-1 (rho : serial corr)
