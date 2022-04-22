@@ -10,5 +10,6 @@
 # production function
 # government policy : r, t, g
 
-# Bellman Eq
-# Envelope Thm
+# Bellman Eq : V = u(c) + beta*V(+1)
+# Envelope Thm 
+# only state and choice var : u(c), f(k), beta
