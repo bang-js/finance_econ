@@ -5,6 +5,7 @@
 
 ###
 # SIMPLE EXAMPLE (2by2)
+# Pr(x(t+1)=x(0)|x(t)=x(1))을 matrix화
 ###
 import numpy as np
 
@@ -30,7 +31,7 @@ def markov_pred(mat,iter,initial):
 result = markov_pred(mat,iter,initial)
 print(result)
 
-# 99번 iteration에 대한 visualization
+# 99번 iteration에 대한 visualization : unconditional prob. 계산
 import matplotlib.pyplot as plt
 
 result_a = np.zeros(99)
