@@ -38,9 +38,9 @@ browser.get("https://www.bigkinds.or.kr/")
 
 # 로그인
 browser.find_element_by_xpath('//*[@id="header"]/div[1]/div/div/button[1]').click()
-browser.find_element_by_xpath('//*[@id="login-user-id"]').send_keys("bes55579@daum.net")
+# browser.find_element_by_xpath('//*[@id="login-user-id"]').send_keys("") #id
 time.sleep(1) 
-browser.find_element_by_xpath('//*[@id="login-user-password"]').send_keys("bang0468!") 
+# browser.find_element_by_xpath('//*[@id="login-user-password"]').send_keys("") #pw
 time.sleep(1)
 browser.find_element_by_xpath('//*[@id="login-btn"]').click()
 
