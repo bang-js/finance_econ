@@ -84,13 +84,13 @@ for i in range(30) : #df.shape[0]
     date1 = date0 - datetime.timedelta(days=15) # 넉넉히 가져오기 
     date_dash = date[:4]+'-'+date[4:6]+'-'+date[6:8]
 
-    df_stock_temp = stock.get_market_ohlcv(date1.strftime('%Y%m%d'), date, ticker,'d')
+    df_stock_temp = stock.get_market_ohlcv(date1.strftime('%Y%m%d'), date0.strftime('%Y%m%d'), ticker,'d')
     df_stock_temp = df_stock_temp.reset_index()
     if df_stock_temp.shape[0] > 0 :
         df_stock_temp['날짜'] = pd.to_datetime(df_stock_temp['날짜'])
         df_stock_temp['ror'] = df_stock_temp['종가']/df_stock_temp['종가'].shift(1) - 1 # 수익률 생성
         ror_temp = list(np.array(df_stock_temp['ror'].tolist()))
-        ror_temp = ror_temp[-5:0] # 5개만큼 추리기, 이때 t=0는 제외해야 중복안됨
+        ror_temp = ror_temp[-6:-1] # 5개만큼 추리기, 이때 t=0는 제외해야 중복안됨
     else : # 비어있다면
         ror_temp = [0 for i in range(5)]
     ror.append(ror_temp) # ror이라는 이중list
