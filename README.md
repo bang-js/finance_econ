@@ -27,7 +27,3 @@ distribution.py \
 &nbsp;&nbsp; Poisson dist : cdf, pdf and vt 버전
 &nbsp;&nbsp; geometric dist
 &nbsp;&nbsp; negative binomial dist
-
-## 1% rule
-1% rule 가설 \
-&nbsp;&nbsp; : ror의 분포에서 하위1% 수익률(Value at Risk)에 수익률이 도달할 경우 이후에 강한 하락세가 온다는 가설
