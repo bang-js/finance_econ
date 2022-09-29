@@ -1,7 +1,8 @@
 # ESG controversies and stock market reaction
 
 ## anounce
-
+1. beautiful soup과 parser.make2d로 정기공시 자료 parsing
+2. 공시날짜와 news날짜 매칭 후 근처면 제거
 
 ## regression
 1. dummy var.
